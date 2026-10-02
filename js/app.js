@@ -1,985 +1,322 @@
-/* =========================================================
+/* =========================================
    KEYRADDIIN ONLINE CLASS
-   js/app.js
-   Main Homepage Controller
-   ========================================================= */
+   APP.JS
+========================================= */
 
-import {
-  getClasses,
-  getClass,
-  watchParticipants
-} from "../firebase/database.js";
+"use strict";
 
-import {
-  getUserProfile
-} from "../firebase/auth.js";
+/* =========================================
+   GLOBAL APP OBJECT
+========================================= */
 
+const KEYRADDIIN_APP = {
 
-/* =========================================================
-   CONFIGURATION
-   ========================================================= */
+    name: "KEYRADDIIN ONLINE CLASS",
 
-const APP_CONFIG = {
-  defaultClassPage: "pages/classes.html",
-  liveClassPage: "pages/live-class.html",
-  loginPage: "pages/login.html",
+    version: "1.0.0",
 
-  refreshInterval: 30000,
+    currentUser: null,
 
-  // Demo/fake values are NOT allowed.
-  showDemoData: false
+    currentClass: null,
+
+    initialized: false
+
 };
 
 
-/* =========================================================
-   DOM HELPERS
-   ========================================================= */
+/* =========================================
+   PAGE READY
+========================================= */
 
-function $(selector) {
-  return document.querySelector(selector);
-}
+document.addEventListener("DOMContentLoaded", () => {
 
+    KEYRADDIIN_APP.initialized = true;
 
-function escapeHTML(value) {
-  if (value === null || value === undefined) {
-    return "";
-  }
+    loadSavedUser();
 
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
+    setCurrentYear();
 
+    setupGlobalButtons();
 
-/* =========================================================
-   PAGE STATE
-   ========================================================= */
-
-const state = {
-  classes: [],
-  liveClass: null,
-  participants: [],
-  participantUnsubscribe: null,
-  refreshTimer: null
-};
-
-
-/* =========================================================
-   INITIALIZE
-   ========================================================= */
-
-document.addEventListener("DOMContentLoaded", async () => {
-
-  console.log(
-    "KEYRADDIIN ONLINE CLASS initialized."
-  );
-
-  setupCurrentYear();
-
-  await loadLiveClass();
-
-  startAutoRefresh();
+    console.log(
+        "KEYRADDIIN ONLINE CLASS initialized."
+    );
 
 });
 
 
-/* =========================================================
-   CURRENT YEAR
-   ========================================================= */
+/* =========================================
+   LOCAL USER
+========================================= */
 
-function setupCurrentYear() {
-
-  const yearElement = document.getElementById("year");
-
-  if (yearElement) {
-    yearElement.textContent =
-      new Date().getFullYear();
-  }
-
-}
-
-
-/* =========================================================
-   LOAD LIVE CLASS
-   ========================================================= */
-
-async function loadLiveClass() {
-
-  try {
-
-    const classes = await getClasses();
-
-    state.classes = Array.isArray(classes)
-      ? classes
-      : [];
-
-    const liveClass = findLiveClass(
-      state.classes
-    );
-
-    state.liveClass = liveClass;
-
-    if (!liveClass) {
-
-      showNoLiveClass();
-
-      return;
-    }
-
-
-    /*
-      We found a real live class.
-    */
-
-    await renderLiveClass(
-      liveClass
-    );
-
-
-    /*
-      Start listening to participants
-      in real time.
-    */
-
-    startParticipantListener(
-      liveClass.id
-    );
-
-
-  } catch (error) {
-
-    console.error(
-      "Failed to load live class:",
-      error
-    );
-
-    showLiveClassError();
-
-  }
-
-}
-
-
-/* =========================================================
-   FIND ACTIVE LIVE CLASS
-   ========================================================= */
-
-function findLiveClass(classes) {
-
-  if (!Array.isArray(classes)) {
-    return null;
-  }
-
-
-  /*
-    Only classes explicitly marked
-    as live/active are accepted.
-  */
-
-  const live = classes.find((classItem) => {
-
-    if (!classItem) {
-      return false;
-    }
-
-    const status =
-      String(classItem.status || "")
-        .toLowerCase();
-
-    const live =
-      classItem.live === true ||
-      classItem.isLive === true ||
-      classItem.active === true;
-
-    return (
-      live ||
-      status === "live" ||
-      status === "live now" ||
-      status === "active"
-    );
-
-  });
-
-
-  return live || null;
-}
-
-
-/* =========================================================
-   RENDER LIVE CLASS
-   ========================================================= */
-
-async function renderLiveClass(classItem) {
-
-  const liveCard = document.querySelector(
-    ".live-card"
-  );
-
-  if (!liveCard) {
-    return;
-  }
-
-
-  /*
-    Get basic class information.
-  */
-
-  const subject =
-    classItem.subject ||
-    classItem.title ||
-    classItem.name ||
-    "Live Class";
-
-
-  const unit =
-    classItem.unit ||
-    classItem.unitName ||
-    "";
-
-
-  const grade =
-    classItem.grade ||
-    "";
-
-
-  /*
-    Teacher information.
-  */
-
-  let teacherName =
-    classItem.teacherName ||
-    classItem.teacher ||
-    "";
-
-
-  /*
-    If only teacherId exists,
-    get teacher profile from Firestore.
-  */
-
-  if (
-    !teacherName &&
-    classItem.teacherId
-  ) {
+function loadSavedUser() {
 
     try {
 
-      const teacher =
-        await getUserProfile(
-          classItem.teacherId
-        );
+        const savedUser =
+            localStorage.getItem(
+                "keyraddiin_current_user"
+            );
 
-      if (teacher) {
+        if (savedUser) {
 
-        teacherName =
-          teacher.fullName ||
-          teacher.displayName ||
-          teacher.name ||
-          "Teacher";
-      }
+            KEYRADDIIN_APP.currentUser =
+                JSON.parse(savedUser);
+
+        }
 
     } catch (error) {
 
-      console.warn(
-        "Teacher profile could not be loaded:",
-        error
-      );
+        console.error(
+            "Could not load saved user:",
+            error
+        );
 
     }
-
-  }
-
-
-  if (!teacherName) {
-    teacherName = "Teacher";
-  }
-
-
-  /*
-    Update subject.
-  */
-
-  const titleElement =
-    liveCard.querySelector(
-      ".card-header h2"
-    );
-
-  if (titleElement) {
-
-    titleElement.textContent =
-      subject;
-  }
-
-
-  /*
-    Update unit + grade.
-  */
-
-  const subtitleElement =
-    liveCard.querySelector(
-      ".card-header p"
-    );
-
-  if (subtitleElement) {
-
-    const information = [];
-
-    if (unit) {
-      information.push(unit);
-    }
-
-    if (grade) {
-      information.push(
-        `Grade ${grade}`
-      );
-    }
-
-    subtitleElement.textContent =
-      information.length
-        ? information.join(" • ")
-        : "Online Class";
-  }
-
-
-  /*
-    Update teacher name.
-  */
-
-  const teacherStrong =
-    liveCard.querySelector(
-      ".teacher strong"
-    );
-
-  if (teacherStrong) {
-
-    teacherStrong.textContent =
-      teacherName;
-  }
-
-
-  /*
-    Update teacher avatar.
-  */
-
-  const teacherAvatar =
-    liveCard.querySelector(
-      ".teacher-avatar"
-    );
-
-  if (teacherAvatar) {
-
-    teacherAvatar.textContent =
-      getInitials(teacherName);
-  }
-
-
-  /*
-    Store class ID on the card.
-  */
-
-  liveCard.dataset.classId =
-    classItem.id;
-
-
-  /*
-    Join button.
-  */
-
-  const joinButton =
-    liveCard.querySelector(
-      ".join-btn"
-    );
-
-  if (joinButton) {
-
-    joinButton.href =
-      `${APP_CONFIG.liveClassPage}?classId=${encodeURIComponent(classItem.id)}`;
-
-    joinButton.setAttribute(
-      "aria-label",
-      `Join ${subject} live class`
-    );
-  }
-
-
-  /*
-    Make card visible.
-  */
-
-  liveCard.style.display = "";
-
-
-  /*
-    Update initial participant count
-    if the class contains one.
-  */
-
-  if (
-    typeof classItem.participantsCount ===
-    "number"
-  ) {
-
-    updateParticipantCount(
-      classItem.participantsCount
-    );
-  }
 
 }
 
 
-/* =========================================================
-   PARTICIPANT REAL-TIME LISTENER
-   ========================================================= */
+/* =========================================
+   SAVE USER
+========================================= */
 
-function startParticipantListener(classId) {
+function saveCurrentUser(user) {
 
-  /*
-    Remove previous listener.
-  */
+    KEYRADDIIN_APP.currentUser = user;
 
-  if (
-    typeof state.participantUnsubscribe ===
-    "function"
-  ) {
+    localStorage.setItem(
+        "keyraddiin_current_user",
+        JSON.stringify(user)
+    );
 
-    state.participantUnsubscribe();
-  }
+}
 
 
-  try {
+/* =========================================
+   LOGOUT
+========================================= */
 
-    const unsubscribe =
-      watchParticipants(
-        classId,
-        (participants) => {
+function logoutUser() {
 
-          const list =
-            Array.isArray(participants)
-              ? participants
-              : [];
+    localStorage.removeItem(
+        "keyraddiin_current_user"
+    );
 
-          state.participants = list;
+    KEYRADDIIN_APP.currentUser = null;
 
-          updateParticipantCount(
-            list.length
-          );
+    window.location.href =
+        "login.html";
 
-          renderParticipantAvatars(
-            list
-          );
+}
 
+
+/* =========================================
+   CURRENT YEAR
+========================================= */
+
+function setCurrentYear() {
+
+    const elements =
+        document.querySelectorAll(
+            "[data-current-year]"
+        );
+
+    const year =
+        new Date().getFullYear();
+
+    elements.forEach(element => {
+
+        element.textContent = year;
+
+    });
+
+}
+
+
+/* =========================================
+   GLOBAL BUTTONS
+========================================= */
+
+function setupGlobalButtons() {
+
+    const logoutButtons =
+        document.querySelectorAll(
+            "[data-logout]"
+        );
+
+    logoutButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            logoutUser
+        );
+
+    });
+
+}
+
+
+/* =========================================
+   SAFE STORAGE
+========================================= */
+
+function saveData(key, data) {
+
+    try {
+
+        localStorage.setItem(
+            key,
+            JSON.stringify(data)
+        );
+
+        return true;
+
+    } catch (error) {
+
+        console.error(
+            "Storage error:",
+            error
+        );
+
+        return false;
+
+    }
+
+}
+
+
+function getData(key, defaultValue = null) {
+
+    try {
+
+        const data =
+            localStorage.getItem(key);
+
+        if (!data) {
+            return defaultValue;
         }
-      );
 
+        return JSON.parse(data);
 
-    /*
-      Firebase listener may return
-      an unsubscribe function.
-    */
+    } catch (error) {
 
-    if (
-      typeof unsubscribe ===
-      "function"
-    ) {
+        console.error(
+            "Could not read storage:",
+            error
+        );
 
-      state.participantUnsubscribe =
-        unsubscribe;
+        return defaultValue;
+
     }
-
-  } catch (error) {
-
-    console.error(
-      "Participant listener failed:",
-      error
-    );
-
-  }
 
 }
 
 
-/* =========================================================
-   PARTICIPANT COUNT
-   ========================================================= */
+/* =========================================
+   PAGE NAVIGATION
+========================================= */
 
-function updateParticipantCount(count) {
+function goTo(page) {
 
-  const countElement =
-    document.getElementById(
-      "liveStudentCount"
-    );
-
-
-  if (!countElement) {
-    return;
-  }
-
-
-  const safeCount =
-    Number.isFinite(Number(count))
-      ? Math.max(
-          0,
-          Number(count)
-        )
-      : 0;
-
-
-  countElement.textContent =
-    safeCount.toLocaleString();
-
-
-  /*
-    Update text beside number.
-  */
-
-  const countContainer =
-    countElement.closest(
-      ".student-count"
-    );
-
-
-  if (countContainer) {
-
-    const label =
-      countContainer.querySelector(
-        "span"
-      );
-
-    if (label) {
-
-      label.textContent =
-        safeCount === 1
-          ? "Student"
-          : "Students";
-    }
-  }
+    window.location.href = page;
 
 }
 
 
-/* =========================================================
-   PARTICIPANT AVATARS
-   ========================================================= */
+/* =========================================
+   NOTIFICATION
+========================================= */
 
-function renderParticipantAvatars(
-  participants
+function showNotification(
+    message,
+    type = "info"
 ) {
 
-  const container =
-    document.querySelector(
-      ".avatars"
-    );
-
-
-  if (!container) {
-    return;
-  }
-
-
-  container.innerHTML = "";
-
-
-  const visibleParticipants =
-    participants.slice(0, 3);
-
-
-  visibleParticipants.forEach(
-    (participant) => {
-
-      const avatar =
-        document.createElement("span");
-
-
-      avatar.className =
-        "participant-avatar";
-
-
-      const name =
-        participant.fullName ||
-        participant.displayName ||
-        participant.name ||
-        "Student";
-
-
-      /*
-        Use initials instead of
-        fake student images.
-      */
-
-      avatar.textContent =
-        getInitials(name);
-
-
-      avatar.title =
-        name;
-
-
-      container.appendChild(
-        avatar
-      );
-
-    }
-  );
-
-
-  /*
-    Show +N only when more
-    participants exist.
-  */
-
-  const remaining =
-    participants.length -
-    visibleParticipants.length;
-
-
-  if (remaining > 0) {
-
-    const more =
-      document.createElement("span");
-
-    more.className =
-      "avatar-more";
-
-    more.textContent =
-      `+${remaining}`;
-
-    more.title =
-      `${remaining} more students`;
-
-    container.appendChild(
-      more
-    );
-  }
-
-
-  /*
-    If nobody is in the class,
-    show a neutral icon.
-  */
-
-  if (
-    participants.length === 0
-  ) {
-
-    const empty =
-      document.createElement("span");
-
-    empty.className =
-      "avatar-more";
-
-    empty.textContent =
-      "0";
-
-    empty.title =
-      "No students currently joined";
-
-    container.appendChild(
-      empty
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   INITIALS
-   ========================================================= */
-
-function getInitials(name) {
-
-  if (!name) {
-    return "?";
-  }
-
-
-  const words =
-    String(name)
-      .trim()
-      .split(/\s+/)
-      .filter(Boolean);
-
-
-  if (words.length === 1) {
-
-    return words[0]
-      .substring(0, 2)
-      .toUpperCase();
-  }
-
-
-  return (
-    words[0][0] +
-    words[words.length - 1][0]
-  ).toUpperCase();
-
-}
-
-
-/* =========================================================
-   NO LIVE CLASS
-   ========================================================= */
-
-function showNoLiveClass() {
-
-  const liveCard =
-    document.querySelector(
-      ".live-card"
-    );
-
-
-  if (!liveCard) {
-    return;
-  }
-
-
-  const title =
-    liveCard.querySelector(
-      ".card-header h2"
-    );
-
-  const subtitle =
-    liveCard.querySelector(
-      ".card-header p"
-    );
-
-  const badge =
-    liveCard.querySelector(
-      ".now-live"
-    );
-
-  const teacher =
-    liveCard.querySelector(
-      ".teacher strong"
-    );
-
-  const joinButton =
-    liveCard.querySelector(
-      ".join-btn"
-    );
-
-
-  if (badge) {
-
-    badge.innerHTML =
-      `
-        <span></span>
-        NO LIVE CLASS
-      `;
-
-    badge.style.color =
-      "#94a3b8";
-  }
-
-
-  if (title) {
-
-    title.textContent =
-      "No Live Class";
-  }
-
-
-  if (subtitle) {
-
-    subtitle.textContent =
-      "Live class yeroo ammaa hin jiru.";
-  }
-
-
-  if (teacher) {
-
-    teacher.textContent =
-      "Waiting for teacher";
-  }
-
-
-  if (joinButton) {
-
-    joinButton.textContent =
-      "View Classes →";
-
-    joinButton.href =
-      APP_CONFIG.defaultClassPage;
-  }
-
-
-  updateParticipantCount(0);
-
-
-  const avatars =
-    document.querySelector(
-      ".avatars"
-    );
-
-
-  if (avatars) {
-
-    avatars.innerHTML = "";
-
-    const empty =
-      document.createElement("span");
-
-    empty.className =
-      "avatar-more";
-
-    empty.textContent =
-      "—";
-
-    avatars.appendChild(
-      empty
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   FIREBASE ERROR STATE
-   ========================================================= */
-
-function showLiveClassError() {
-
-  const liveCard =
-    document.querySelector(
-      ".live-card"
-    );
-
-
-  if (!liveCard) {
-    return;
-  }
-
-
-  const title =
-    liveCard.querySelector(
-      ".card-header h2"
-    );
-
-  const subtitle =
-    liveCard.querySelector(
-      ".card-header p"
-    );
-
-
-  if (title) {
-
-    title.textContent =
-      "Live Class";
-  }
-
-
-  if (subtitle) {
-
-    subtitle.textContent =
-      "Connection issue";
-  }
-
-
-  updateParticipantCount(0);
-
-}
-
-
-/* =========================================================
-   AUTO REFRESH
-   ========================================================= */
-
-function startAutoRefresh() {
-
-  if (state.refreshTimer) {
-
-    clearInterval(
-      state.refreshTimer
-    );
-  }
-
-
-  state.refreshTimer =
-    setInterval(
-      async () => {
-
-        /*
-          Don't unnecessarily reload
-          if the page is hidden.
-        */
-
-        if (
-          document.hidden
-        ) {
-          return;
-        }
-
-
-        await loadLiveClass();
-
-      },
-      APP_CONFIG.refreshInterval
-    );
-
-}
-
-
-/* =========================================================
-   PAGE VISIBILITY
-   ========================================================= */
-
-document.addEventListener(
-  "visibilitychange",
-  async () => {
-
-    if (
-      !document.hidden
-    ) {
-
-      await loadLiveClass();
+    const old =
+        document.querySelector(
+            ".keyraddiin-notification"
+        );
+
+    if (old) {
+        old.remove();
     }
 
-  }
-);
+    const notification =
+        document.createElement("div");
+
+    notification.className =
+        "keyraddiin-notification";
+
+    notification.textContent =
+        message;
+
+    notification.style.position =
+        "fixed";
+
+    notification.style.top =
+        "20px";
+
+    notification.style.right =
+        "20px";
+
+    notification.style.zIndex =
+        "99999";
+
+    notification.style.padding =
+        "12px 16px";
+
+    notification.style.borderRadius =
+        "8px";
+
+    notification.style.background =
+        type === "error"
+            ? "#e53935"
+            : "#0b3d91";
+
+    notification.style.color =
+        "#ffffff";
+
+    notification.style.fontSize =
+        "13px";
+
+    notification.style.fontWeight =
+        "700";
+
+    document.body.appendChild(
+        notification
+    );
+
+    setTimeout(() => {
+
+        notification.remove();
+
+    }, 3000);
+
+}
 
 
-/* =========================================================
-   CLEANUP
-   ========================================================= */
+/* =========================================
+   EXPORT
+========================================= */
 
-window.addEventListener(
-  "beforeunload",
-  () => {
+window.KEYRADDIIN_APP =
+    KEYRADDIIN_APP;
 
-    if (
-      typeof state.participantUnsubscribe ===
-      "function"
-    ) {
+window.saveCurrentUser =
+    saveCurrentUser;
 
-      state.participantUnsubscribe();
-    }
+window.logoutUser =
+    logoutUser;
 
+window.saveData =
+    saveData;
 
-    if (state.refreshTimer) {
+window.getData =
+    getData;
 
-      clearInterval(
-        state.refreshTimer
-      );
-    }
+window.goTo =
+    goTo;
 
-  }
-);
-
-
-/* =========================================================
-   DEBUG ACCESS
-   ========================================================= */
-
-window.KEYRADDIIN_ONLINE_CLASS = {
-  getState: () => ({
-    classes: state.classes,
-    liveClass: state.liveClass,
-    participants: state.participants
-  }),
-
-  refresh: loadLiveClass
-};
+window.showNotification =
+    showNotification;
