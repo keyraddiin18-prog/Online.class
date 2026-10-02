@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Live Class | KEYRADDIIN ONLINE CLASS</title>
+
+    <link rel="icon" href="../assets/favicon.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0c1422;
+            color: white;
+        }
+
+        .header {
+            height: 65px;
+            background: #101b2c;
+            border-bottom: 1px solid #243247;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 18px;
+        }
+
+        .brand {
+            font-weight: 800;
+            font-size: 15px;
+        }
+
+        .class-title {
+            color: #b8c3d4;
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        .live-status {
+            background: #e53935;
+            padding: 7px 10px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .container {
+            max-width: 1250px;
+            margin: auto;
+            padding: 18px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 15px;
+        }
+
+        .video-area {
+            background: #111d30;
+            border: 1px solid #26364d;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .teacher-video {
+            height: 480px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #17345e,
+                    #0e1d33
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+        }
+
+        .teacher-avatar {
+            width: 105px;
+            height: 105px;
+            background: white;
+            color: #172033;
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 50px;
+        }
+
+        .teacher-name {
+            position: absolute;
+            left: 18px;
+            bottom: 15px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .video-live {
+            position: absolute;
+            left: 18px;
+            top: 15px;
+
+            background: #e53935;
+            padding: 6px 9px;
+            border-radius: 5px;
+
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .controls {
+            height: 65px;
+            background: #101b2c;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .control {
+            width: 43px;
+            height: 43px;
+
+            border: 1px solid #34445b;
+            border-radius: 50%;
+
+            background: #1b293d;
+            color: white;
+
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        .leave {
+            background: #d32f2f;
+            border: none;
+            width: auto;
+            padding: 0 17px;
+            border-radius: 22px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .side-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .panel {
+            background: #111d30;
+            border: 1px solid #26364d;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 14px;
+            border-bottom: 1px solid #26364d;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .participant-count {
+            color: #55c98a;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+        .participants {
+            padding: 12px;
+            max-height: 230px;
+            overflow-y: auto;
+        }
+
+        .participant {
+            padding: 10px 4px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 12px;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #263a57;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .online {
+            color: #55c98a;
+            font-size: 9px;
+        }
+
+        .chat {
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .messages {
+            flex: 1;
+            padding: 12px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 12px;
+        }
+
+        .message strong {
+            font-size: 11px;
+        }
+
+        .message p {
+            color: #c1cad7;
+            font-size: 11px;
+            margin-top: 2px;
+        }
+
+        .chat-form {
+            display: flex;
+            border-top: 1px solid #26364d;
+        }
+
+        .chat-form input {
+            flex: 1;
+            background: #101b2c;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 12px;
+            font-size: 11px;
+        }
+
+        .chat-form button {
+            background: #0b3d91;
+            color: white;
+            border: none;
+            padding: 0 14px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 850px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .teacher-video {
+                height: 380px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .header {
+                padding: 0 12px;
+            }
+
+            .teacher-video {
+                height: 300px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .leave {
+                padding: 0 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div>
+        <div class="brand">
+            KEYRADDIIN ONLINE CLASS
+        </div>
+
+        <div class="class-title">
+            Biology — Unit 1
+        </div>
+    </div>
+
+    <div class="live-status">
+        🔴 LIVE
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <div class="main-grid">
+
+
+        <!-- VIDEO -->
+
+        <section class="video-area">
+
+            <div class="teacher-video">
+
+                <div class="video-live">
+                    🔴 LIVE
+                </div>
+
+                <div class="teacher-avatar">
+                    👨‍🏫
+                </div>
+
+                <div class="teacher-name">
+                    Teacher — Biology Class
+                </div>
+
+            </div>
+
+
+            <div class="controls">
+
+                <button class="control">
+                    🎤
+                </button>
+
+                <button class="control">
+                    📹
+                </button>
+
+                <button class="control">
+                    💬
+                </button>
+
+                <button
+                    class="control leave"
+                    onclick="leaveClass()"
+                >
+                    Leave Class
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- SIDE PANEL -->
+
+        <aside class="side-panel">
+
+
+            <!-- PARTICIPANTS -->
+
+            <section class="panel">
+
+                <div class="panel-header">
+
+                    Participants
+
+                    <span class="participant-count">
+                        👥 37
+                    </span>
+
+                </div>
+
+
+                <div class="participants">
+
+                    <div class="participant">
+                        <div class="avatar">👨‍🏫</div>
+                        <div>
+                            Teacher
+                            <div class="online">● Online</div>
+                        </div>
+                    </div>
+
+                    <div class="participant">
+                        <div class="avatar">👨‍🎓</div>
+                        <div>
+                            Student 1
+                            <div class="online">● Online</div>
+                        </div>
+                    </div>
+
+                    <div class="participant">
+                        <div class="avatar">👩‍🎓</div>
+                        <div>
+                            Student 2
+                            <div class="online">● Online</div>
+                        </div>
+                    </div>
+
+                    <div class="participant">
+                        <div class="avatar">👨‍🎓</div>
+                        <div>
+                            Student 3
+                            <div class="online">● Online</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CHAT -->
+
+            <section class="panel chat">
+
+                <div class="panel-header">
+                    💬 Class Chat
+                </div>
+
+
+                <div class="messages" id="messages">
+
+                    <div class="message">
+                        <strong>Teacher</strong>
+                        <p>
+                            Welcome everyone!
+                        </p>
+                    </div>
+
+                    <div class="message">
+                        <strong>Student 1</strong>
+                        <p>
+                            Hello teacher 👋
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <form
+                    class="chat-form"
+                    id="chatForm"
+                >
+
+                    <input
+                        type="text"
+                        id="messageInput"
+                        placeholder="Type a message..."
+                        autocomplete="off"
+                    >
+
+                    <button type="submit">
+                        ➤
+                    </button>
+
+                </form>
+
+            </section>
+
+        </aside>
+
+    </div>
+
+</main>
+
+
+<script>
+
+    document
+        .getElementById("chatForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const input =
+                document.getElementById("messageInput");
+
+            const message =
+                input.value.trim();
+
+            if (!message) {
+                return;
+            }
+
+            const box =
+                document.getElementById("messages");
+
+            const item =
+                document.createElement("div");
+
+            item.className = "message";
+
+            item.innerHTML =
+                "<strong>You</strong>" +
+                "<p>" + message + "</p>";
+
+            box.appendChild(item);
+
+            input.value = "";
+
+            box.scrollTop = box.scrollHeight;
+
+        });
+
+
+    function leaveClass() {
+
+        const confirmLeave =
+            confirm("Do you want to leave this class?");
+
+        if (confirmLeave) {
+            window.location.href =
+                "classes.html";
+        }
+
+    }
+
+</script>
+
+</body>
+</html>

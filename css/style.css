@@ -1,0 +1,1436 @@
+/* =========================================================
+   KEYRADDIIN ONLINE CLASS
+   css/style.css
+   Professional Main Website Styles
+   ========================================================= */
+
+
+/* =========================================================
+   1. RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background: #f8fafc;
+    color: #0f172a;
+
+    line-height: 1.6;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   2. VARIABLES
+   ========================================================= */
+
+:root {
+
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #eff6ff;
+
+    --dark: #0f172a;
+    --dark-2: #172033;
+
+    --text: #172033;
+    --muted: #64748b;
+    --muted-light: #94a3b8;
+
+    --white: #ffffff;
+
+    --border: #e2e8f0;
+
+    --background: #f8fafc;
+    --section: #f1f5f9;
+
+    --success: #16a34a;
+    --success-bg: #dcfce7;
+
+    --shadow-sm:
+        0 2px 8px rgba(15, 23, 42, 0.05);
+
+    --shadow-md:
+        0 12px 30px rgba(15, 23, 42, 0.08);
+
+    --shadow-lg:
+        0 24px 60px rgba(15, 23, 42, 0.12);
+
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 30px;
+
+    --container: 1180px;
+}
+
+
+/* =========================================================
+   3. CONTAINER
+   ========================================================= */
+
+.section-container,
+.header-container,
+.hero-container,
+.features-container,
+.footer-container,
+.cta-container {
+    width: min(
+        calc(100% - 40px),
+        var(--container)
+    );
+
+    margin-inline: auto;
+}
+
+
+/* =========================================================
+   4. HEADER
+   ========================================================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border-bottom: 1px solid var(--border);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.header-container {
+    min-height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+/* Brand */
+
+.brand {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 0;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.brand-text strong {
+    color: var(--dark);
+
+    font-size: 15px;
+    font-weight: 800;
+
+    letter-spacing: -0.2px;
+
+    white-space: nowrap;
+}
+
+.brand-text span {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin-top: 1px;
+}
+
+
+/* Login button */
+
+.login-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 48px;
+
+    padding: 0 20px;
+
+    background: var(--dark);
+    color: var(--white);
+
+    border-radius: 14px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.login-btn:hover {
+    background: #1e293b;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(15, 23, 42, 0.15);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   5. HERO
+   ========================================================= */
+
+.hero {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(37, 99, 235, 0.12),
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f8fafc 100%
+        );
+}
+
+.hero-container {
+    min-height: 570px;
+
+    display: grid;
+
+    align-items: center;
+
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+
+/* Hero text */
+
+.hero-content {
+    max-width: 650px;
+}
+
+.hero-label {
+    display: inline-flex;
+
+    padding: 8px 12px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    border-radius: 999px;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1.8px;
+}
+
+.hero h1 {
+    margin-top: 20px;
+
+    color: var(--dark);
+
+    font-size: clamp(
+        42px,
+        8vw,
+        76px
+    );
+
+    line-height: 1.02;
+
+    letter-spacing: -3px;
+
+    font-weight: 850;
+}
+
+.hero p {
+    max-width: 590px;
+
+    margin-top: 24px;
+
+    color: var(--muted);
+
+    font-size: 17px;
+
+    line-height: 1.75;
+}
+
+
+/* Hero buttons */
+
+.hero-actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 32px;
+}
+
+.primary-btn,
+.secondary-btn {
+    min-height: 54px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 14px;
+
+    padding: 0 22px;
+
+    border-radius: 14px;
+
+    font-size: 15px;
+    font-weight: 750;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.primary-btn {
+    background: var(--primary);
+    color: white;
+
+    box-shadow:
+        0 10px 24px rgba(37, 99, 235, 0.22);
+}
+
+.primary-btn:hover {
+    background: var(--primary-dark);
+
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background: white;
+
+    color: var(--dark);
+
+    border: 1px solid var(--border);
+}
+
+.secondary-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* Hero visual */
+
+.hero-visual {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-card {
+    width: min(100%, 390px);
+
+    padding: 26px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    background: var(--dark);
+
+    color: white;
+
+    border-radius: 28px;
+
+    box-shadow: var(--shadow-lg);
+
+    transform: rotate(1deg);
+}
+
+.hero-card-icon {
+    width: 72px;
+    height: 72px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    background:
+        rgba(255, 255, 255, 0.09);
+
+    border-radius: 20px;
+
+    font-size: 32px;
+}
+
+.hero-card div:last-child {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-card span {
+    color: #93c5fd;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.hero-card strong {
+    margin-top: 5px;
+
+    font-size: 19px;
+}
+
+.hero-card small {
+    margin-top: 5px;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   6. FEATURES
+   ========================================================= */
+
+.features-section {
+    padding: 30px 0 80px;
+
+    background: #ffffff;
+}
+
+.features-container {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+}
+
+.feature-card {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 16px;
+
+    padding: 22px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+
+    border-color: #bfdbfe;
+
+    box-shadow: var(--shadow-md);
+}
+
+.feature-icon {
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    background: var(--primary-light);
+
+    border-radius: 14px;
+
+    font-size: 24px;
+}
+
+.feature-card h3 {
+    color: var(--dark);
+
+    font-size: 16px;
+
+    font-weight: 800;
+}
+
+.feature-card p {
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   7. SECTION HEADINGS
+   ========================================================= */
+
+.live-section {
+    padding: 85px 0;
+
+    background: #f8fafc;
+}
+
+.section-heading {
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom: 30px;
+}
+
+.section-label {
+    display: inline-block;
+
+    color: var(--primary);
+
+    font-size: 11px;
+
+    font-weight: 850;
+
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+    margin-top: 7px;
+
+    color: var(--dark);
+
+    font-size: clamp(
+        28px,
+        5vw,
+        42px
+    );
+
+    line-height: 1.1;
+
+    letter-spacing: -1.5px;
+}
+
+.section-heading p {
+    margin-top: 9px;
+
+    color: var(--muted);
+
+    font-size: 15px;
+}
+
+.section-link {
+    color: var(--primary);
+
+    font-size: 14px;
+
+    font-weight: 750;
+
+    white-space: nowrap;
+}
+
+.section-link:hover {
+    text-decoration: underline;
+}
+
+.centered {
+    text-align: center;
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   8. LIVE CARD
+   ========================================================= */
+
+.live-card {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0f172a,
+            #111c35
+        );
+
+    color: white;
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 25px 60px rgba(15, 23, 42, 0.16);
+}
+
+.live-card-top {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 28px 28px 0;
+}
+
+.live-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: #86efac;
+
+    font-size: 12px;
+
+    font-weight: 850;
+
+    letter-spacing: 1.5px;
+}
+
+.live-dot {
+    width: 11px;
+    height: 11px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 0 7px rgba(34, 197, 94, 0.12);
+}
+
+.live-class-icon {
+    width: 62px;
+    height: 62px;
+
+    display: grid;
+    place-items: center;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    border-radius: 19px;
+
+    font-size: 27px;
+}
+
+.live-card-content {
+    padding: 26px 28px 30px;
+}
+
+.card-header {
+    padding-bottom: 25px;
+
+    border-bottom:
+        1px solid rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+}
+
+.card-header h2 {
+    font-size: clamp(
+        30px,
+        7vw,
+        48px
+    );
+
+    line-height: 1.1;
+
+    letter-spacing: -1.5px;
+}
+
+.card-header p {
+    margin-top: 8px;
+
+    color: #94a3b8;
+
+    font-size: 16px;
+}
+
+
+/* Teacher */
+
+.teacher {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 27px 0;
+}
+
+.teacher-avatar {
+    width: 58px;
+    height: 58px;
+
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+
+    background: var(--primary);
+
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.teacher > div:last-child {
+    display: flex;
+    flex-direction: column;
+}
+
+.teacher span {
+    color: #94a3b8;
+
+    font-size: 13px;
+}
+
+.teacher strong {
+    margin-top: 3px;
+
+    color: white;
+
+    font-size: 16px;
+}
+
+
+/* Live card bottom */
+
+.live-card-bottom {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-bottom: 28px;
+}
+
+.avatars {
+    min-height: 44px;
+
+    display: flex;
+
+    align-items: center;
+}
+
+.participant-avatar,
+.avatar-more {
+    width: 44px;
+    height: 44px;
+
+    display: grid;
+    place-items: center;
+
+    margin-left: -7px;
+
+    border: 3px solid #111c35;
+
+    border-radius: 50%;
+}
+
+.participant-avatar:first-child {
+    margin-left: 0;
+}
+
+.participant-avatar {
+    background: #dbeafe;
+
+    color: #1e40af;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.avatar-more {
+    background: #334155;
+
+    color: white;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.student-count {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+}
+
+.student-count strong {
+    font-size: 32px;
+
+    line-height: 1;
+
+    letter-spacing: -1px;
+}
+
+.student-count span {
+    margin-top: 4px;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+
+/* Join */
+
+.join-btn {
+    min-height: 60px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 22px;
+
+    background: white;
+
+    color: var(--dark);
+
+    border-radius: 16px;
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.join-btn:hover {
+    background: #f1f5f9;
+
+    transform: translateY(-2px);
+}
+
+.join-btn span {
+    font-size: 22px;
+}
+
+
+/* =========================================================
+   9. WHY SECTION
+   ========================================================= */
+
+.why-section {
+    padding: 90px 0;
+
+    background: white;
+}
+
+.why-section .section-heading {
+    max-width: 750px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-bottom: 45px;
+}
+
+.why-grid {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+}
+
+.why-card {
+    padding: 28px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.why-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: var(--shadow-md);
+}
+
+.why-icon {
+    width: 54px;
+    height: 54px;
+
+    display: grid;
+    place-items: center;
+
+    background: var(--primary-light);
+
+    border-radius: 15px;
+
+    font-size: 25px;
+}
+
+.why-card h3 {
+    margin-top: 20px;
+
+    color: var(--dark);
+
+    font-size: 18px;
+}
+
+.why-card p {
+    margin-top: 8px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   10. CTA
+   ========================================================= */
+
+.cta-section {
+    padding: 70px 0;
+
+    background: var(--dark);
+}
+
+.cta-container {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.cta-container > div {
+    max-width: 650px;
+}
+
+.cta-container span {
+    color: #93c5fd;
+
+    font-size: 11px;
+
+    font-weight: 850;
+
+    letter-spacing: 2px;
+}
+
+.cta-container h2 {
+    margin-top: 8px;
+
+    color: white;
+
+    font-size: clamp(
+        28px,
+        5vw,
+        42px
+    );
+
+    line-height: 1.1;
+
+    letter-spacing: -1px;
+}
+
+.cta-container p {
+    margin-top: 10px;
+
+    color: #94a3b8;
+
+    font-size: 15px;
+}
+
+.cta-btn {
+    min-height: 54px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    padding: 0 23px;
+
+    background: white;
+
+    color: var(--dark);
+
+    border-radius: 14px;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.cta-btn:hover {
+    background: #f1f5f9;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   11. FOOTER
+   ========================================================= */
+
+.site-footer {
+    background: #020617;
+
+    color: white;
+
+    padding: 40px 0 25px;
+}
+
+.footer-container {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+.footer-brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.footer-brand img {
+    width: 42px;
+    height: 42px;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+}
+
+.footer-brand strong {
+    font-size: 14px;
+}
+
+.footer-brand p {
+    margin-top: 2px;
+
+    color: #64748b;
+
+    font-size: 11px;
+}
+
+.footer-links {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 20px;
+}
+
+.footer-links a {
+    color: #94a3b8;
+
+    font-size: 13px;
+
+    transition:
+        color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    width: 100%;
+
+    padding-top: 23px;
+
+    border-top:
+        1px solid rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+}
+
+.footer-bottom p {
+    color: #64748b;
+
+    font-size: 11px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   12. RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (min-width: 700px) {
+
+    .features-container {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    .why-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   13. RESPONSIVE — DESKTOP
+   ========================================================= */
+
+@media (min-width: 900px) {
+
+    .hero-container {
+        grid-template-columns:
+            1.1fr 0.9fr;
+
+        min-height: 650px;
+    }
+
+    .hero-visual {
+        justify-content: flex-end;
+    }
+
+}
+
+
+/* =========================================================
+   14. LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1200px) {
+
+    .hero-container {
+        padding-top: 90px;
+        padding-bottom: 90px;
+    }
+
+    .live-card-content {
+        padding: 32px 40px 40px;
+    }
+
+    .live-card-top {
+        padding: 35px 40px 0;
+    }
+
+}
+
+
+/* =========================================================
+   15. MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .section-container,
+    .header-container,
+    .hero-container,
+    .features-container,
+    .footer-container,
+    .cta-container {
+        width: min(
+            calc(100% - 28px),
+            var(--container)
+        );
+    }
+
+
+    .header-container {
+        min-height: 72px;
+    }
+
+
+    .brand-logo {
+        width: 42px;
+        height: 42px;
+    }
+
+
+    .brand-text strong {
+        font-size: 13px;
+    }
+
+
+    .brand-text span {
+        font-size: 10px;
+    }
+
+
+    .login-btn {
+        min-height: 43px;
+
+        padding: 0 14px;
+
+        border-radius: 12px;
+
+        font-size: 12px;
+    }
+
+
+    .hero-container {
+        padding-top: 55px;
+        padding-bottom: 55px;
+    }
+
+
+    .hero h1 {
+        font-size: 45px;
+
+        letter-spacing: -2.2px;
+    }
+
+
+    .hero p {
+        font-size: 15px;
+    }
+
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+
+    .primary-btn,
+    .secondary-btn {
+        width: 100%;
+    }
+
+
+    .hero-card {
+        transform: none;
+    }
+
+
+    .section-heading {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .section-heading h2 {
+        font-size: 30px;
+    }
+
+
+    .section-link {
+        margin-top: -10px;
+    }
+
+
+    .live-card {
+        border-radius: 24px;
+    }
+
+
+    .live-card-top {
+        padding: 23px 20px 0;
+    }
+
+
+    .live-card-content {
+        padding: 22px 20px 24px;
+    }
+
+
+    .card-header h2 {
+        font-size: 32px;
+    }
+
+
+    .live-card-bottom {
+        gap: 10px;
+    }
+
+
+    .student-count strong {
+        font-size: 28px;
+    }
+
+
+    .cta-container {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .cta-btn {
+        width: 100%;
+    }
+
+
+    .footer-container {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .footer-links {
+        gap: 14px;
+    }
+
+
+    .footer-bottom p {
+        text-align: left;
+    }
+
+}
+
+
+/* =========================================================
+   16. ACCESSIBILITY
+   ========================================================= */
+
+a:focus-visible {
+    outline: 3px solid
+        rgba(37, 99, 235, 0.35);
+
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   17. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+
+}

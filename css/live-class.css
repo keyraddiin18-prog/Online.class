@@ -1,0 +1,405 @@
+/* =========================================
+   LIVE CLASS
+   KEYRADDIIN ONLINE CLASS
+========================================= */
+
+.live-page {
+    min-height: 100vh;
+
+    background: #0c1422;
+
+    color: #ffffff;
+}
+
+/* =========================================
+   LIVE HEADER
+========================================= */
+
+.live-header {
+    height: 65px;
+
+    background: #101b2c;
+
+    border-bottom: 1px solid #243247;
+
+    padding: 0 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+.live-brand {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.live-class-title {
+    color: #b8c3d4;
+
+    font-size: 12px;
+
+    margin-top: 2px;
+}
+
+.live-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    background: var(--danger);
+
+    color: var(--white);
+
+    padding: 7px 10px;
+
+    border-radius: 5px;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+/* =========================================
+   LIVE CONTAINER
+========================================= */
+
+.live-container {
+    width: 100%;
+    max-width: 1250px;
+
+    margin: auto;
+
+    padding: 18px;
+}
+
+.live-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr) 320px;
+
+    gap: 15px;
+}
+
+/* =========================================
+   VIDEO AREA
+========================================= */
+
+.video-area {
+    background: #111d30;
+
+    border: 1px solid #26364d;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+.teacher-video {
+    min-height: 480px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #17345e,
+            #0e1d33
+        );
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+.teacher-avatar {
+    width: 105px;
+    height: 105px;
+
+    background: var(--white);
+
+    color: var(--text);
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 50px;
+}
+
+.video-live {
+    position: absolute;
+
+    left: 18px;
+    top: 15px;
+
+    background: var(--danger);
+
+    padding: 6px 9px;
+
+    border-radius: 5px;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.teacher-name {
+    position: absolute;
+
+    left: 18px;
+    bottom: 15px;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* =========================================
+   VIDEO CONTROLS
+========================================= */
+
+.video-controls {
+    min-height: 65px;
+
+    background: #101b2c;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 10px;
+}
+
+.control-btn {
+    width: 43px;
+    height: 43px;
+
+    border: 1px solid #34445b;
+
+    border-radius: 50%;
+
+    background: #1b293d;
+
+    color: white;
+
+    font-size: 17px;
+}
+
+.control-btn:hover {
+    background: #263a57;
+}
+
+.leave-btn {
+    width: auto;
+
+    padding: 0 17px;
+
+    border: none;
+
+    border-radius: 22px;
+
+    background: var(--danger);
+
+    color: white;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* =========================================
+   SIDE PANEL
+========================================= */
+
+.live-sidebar {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.live-panel {
+    background: #111d30;
+
+    border: 1px solid #26364d;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+.live-panel-header {
+    padding: 14px;
+
+    border-bottom: 1px solid #26364d;
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.participant-count {
+    color: #55c98a;
+
+    font-size: 12px;
+
+    margin-left: 5px;
+}
+
+/* =========================================
+   PARTICIPANTS
+========================================= */
+
+.participants-list {
+    padding: 12px;
+
+    max-height: 260px;
+
+    overflow-y: auto;
+}
+
+.participant {
+    padding: 10px 4px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    font-size: 12px;
+}
+
+.participant-avatar {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    background: #263a57;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================================
+   CHAT
+========================================= */
+
+.chat-panel {
+    height: 300px;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.chat-messages {
+    flex: 1;
+
+    padding: 12px;
+
+    overflow-y: auto;
+}
+
+.chat-message {
+    margin-bottom: 12px;
+}
+
+.chat-message strong {
+    font-size: 11px;
+}
+
+.chat-message p {
+    color: #c1cad7;
+
+    font-size: 11px;
+
+    margin-top: 2px;
+
+    word-break: break-word;
+}
+
+.chat-form {
+    display: flex;
+
+    border-top: 1px solid #26364d;
+}
+
+.chat-input {
+    flex: 1;
+
+    min-width: 0;
+
+    background: #101b2c;
+
+    border: none;
+
+    outline: none;
+
+    color: white;
+
+    padding: 12px;
+
+    font-size: 11px;
+}
+
+.chat-input::placeholder {
+    color: #77859a;
+}
+
+.chat-send {
+    background: var(--primary);
+
+    color: white;
+
+    border: none;
+
+    padding: 0 15px;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 850px) {
+
+    .live-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .teacher-video {
+        min-height: 380px;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .live-header {
+        padding: 0 12px;
+    }
+
+    .live-container {
+        padding: 10px;
+    }
+
+    .teacher-video {
+        min-height: 300px;
+    }
+
+    .leave-btn {
+        padding: 0 12px;
+    }
+
+}

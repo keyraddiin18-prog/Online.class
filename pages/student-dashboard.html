@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard | KEYRADDIIN ONLINE CLASS</title>
+
+    <link rel="icon" href="../assets/favicon.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f8fd;
+            color: #172033;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e4e9f1;
+            padding: 14px 18px;
+        }
+
+        .header-inner {
+            max-width: 1150px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            color: #0b3d91;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .logout {
+            color: #d32f2f;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 30px 18px;
+        }
+
+        .welcome {
+            margin-bottom: 25px;
+        }
+
+        .welcome h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .welcome p {
+            color: #697386;
+            font-size: 14px;
+        }
+
+        .student-info {
+            background: #0b3d91;
+            color: white;
+            padding: 22px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+        }
+
+        .student-info small {
+            color: #dbe8ff;
+        }
+
+        .student-info h2 {
+            margin: 4px 0;
+            font-size: 21px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .card-icon {
+            font-size: 26px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .card p {
+            color: #697386;
+            font-size: 12px;
+        }
+
+        .live-card {
+            background: #ffffff;
+            border: 1px solid #e1e7f0;
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .live-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .live-header h2 {
+            font-size: 20px;
+        }
+
+        .live-badge {
+            background: #e53935;
+            color: white;
+            padding: 5px 9px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .class-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            background: #f6f8fc;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .class-name {
+            font-weight: 800;
+            font-size: 15px;
+        }
+
+        .class-meta {
+            color: #697386;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .join {
+            background: #0b3d91;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 800px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .class-row {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .join {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="header-inner">
+
+        <div class="brand">
+            KEYRADDIIN ONLINE CLASS
+        </div>
+
+        <a href="login.html" class="logout">
+            Logout
+        </a>
+
+    </div>
+</header>
+
+
+<main class="container">
+
+    <section class="welcome">
+
+        <h1>
+            Welcome, Student 👋
+        </h1>
+
+        <p>
+            Your learning dashboard
+        </p>
+
+    </section>
+
+
+    <section class="student-info">
+
+        <small>
+            Student Account
+        </small>
+
+        <h2>
+            Student Name
+        </h2>
+
+        <small>
+            Grade 10 • Section A
+        </small>
+
+    </section>
+
+
+    <section class="grid">
+
+        <a href="classes.html" class="card">
+            <div class="card-icon">📚</div>
+            <h3>My Classes</h3>
+            <p>View your online classes.</p>
+        </a>
+
+        <a href="live-class.html" class="card">
+            <div class="card-icon">🔴</div>
+            <h3>Live Class</h3>
+            <p>Join an active lesson.</p>
+        </a>
+
+        <div class="card">
+            <div class="card-icon">📝</div>
+            <h3>Quizzes</h3>
+            <p>Practice your lessons.</p>
+        </div>
+
+        <a href="profile.html" class="card">
+            <div class="card-icon">👤</div>
+            <h3>My Profile</h3>
+            <p>View your account.</p>
+        </a>
+
+    </section>
+
+
+    <section class="live-card">
+
+        <div class="live-header">
+
+            <h2>
+                Live Classes
+            </h2>
+
+            <span class="live-badge">
+                LIVE
+            </span>
+
+        </div>
+
+
+        <div class="class-row">
+
+            <div>
+
+                <div class="class-name">
+                    Biology — Unit 1
+                </div>
+
+                <div class="class-meta">
+                    👨‍🏫 Teacher • 👥 37 Students
+                </div>
+
+            </div>
+
+            <a
+                href="live-class.html"
+                class="join"
+            >
+                Join Class
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>

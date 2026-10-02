@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Class details and learning materials - KEYRADDIIN ONLINE CLASS."
+    >
+
+    <meta
+        name="theme-color"
+        content="#0f172a"
+    >
+
+    <title>Class Details | KEYRADDIIN ONLINE CLASS</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="../assets/favicon.png"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css"
+    >
+
+
+    <!-- =================================================
+         PAGE-SPECIFIC CSS
+    ================================================== -->
+
+    <style>
+
+        /* ================================================
+           CLASS DETAILS PAGE
+        ================================================ */
+
+        .details-page {
+            min-height: 100vh;
+            background: #f8fafc;
+        }
+
+
+        /* ================================================
+           BACK NAVIGATION
+        ================================================ */
+
+        .details-nav {
+            padding: 22px 0 0;
+        }
+
+        .back-link {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #475569;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: #2563eb;
+        }
+
+
+        /* ================================================
+           HERO
+        ================================================ */
+
+        .details-hero {
+            padding: 30px 0 45px;
+        }
+
+        .details-hero-card {
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 35px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #172554
+                );
+
+            border-radius: 28px;
+
+            color: #ffffff;
+
+            box-shadow:
+                0 20px 50px
+                rgba(
+                    15,
+                    23,
+                    42,
+                    0.15
+                );
+        }
+
+        .details-hero-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 260px;
+            height: 260px;
+
+            right: -90px;
+            top: -100px;
+
+            background:
+                rgba(
+                    59,
+                    130,
+                    246,
+                    0.18
+                );
+
+            border-radius: 50%;
+        }
+
+        .details-hero-content {
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 760px;
+        }
+
+
+        /* ================================================
+           STATUS
+        ================================================ */
+
+        .details-status {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            min-height: 32px;
+
+            padding: 0 12px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.10
+                );
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.12
+                );
+
+            border-radius: 999px;
+
+            color: #cbd5e1;
+
+            font-size: 11px;
+
+            font-weight: 850;
+
+            letter-spacing: 0.6px;
+        }
+
+        .details-status.live {
+            color: #86efac;
+
+            background:
+                rgba(
+                    34,
+                    197,
+                    94,
+                    0.12
+                );
+        }
+
+        .details-status-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #94a3b8;
+        }
+
+        .details-status.live
+        .details-status-dot {
+            background: #22c55e;
+
+            box-shadow:
+                0 0 0 5px
+                rgba(
+                    34,
+                    197,
+                    94,
+                    0.12
+                );
+        }
+
+
+        /* ================================================
+           TITLE
+        ================================================ */
+
+        .details-hero h1 {
+            margin-top: 18px;
+
+            font-size:
+                clamp(
+                    34px,
+                    7vw,
+                    58px
+                );
+
+            line-height: 1.05;
+
+            letter-spacing: -2px;
+
+            color: #ffffff;
+        }
+
+        .details-subtitle {
+            margin-top: 13px;
+
+            color: #cbd5e1;
+
+            font-size: 16px;
+
+            line-height: 1.6;
+        }
+
+
+        /* ================================================
+           META
+        ================================================ */
+
+        .details-meta {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-top: 25px;
+        }
+
+        .meta-item {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            min-height: 40px;
+
+            padding: 0 13px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.08
+                );
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.10
+                );
+
+            border-radius: 11px;
+
+            color: #e2e8f0;
+
+            font-size: 13px;
+        }
+
+
+        /* ================================================
+           ACTIONS
+        ================================================ */
+
+        .details-actions {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-top: 27px;
+        }
+
+        .details-action {
+            min-height: 52px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 9px;
+
+            padding: 0 20px;
+
+            border-radius: 13px;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .details-action:hover {
+            transform: translateY(-2px);
+        }
+
+        .details-action.primary {
+            background: #ffffff;
+
+            color: #0f172a;
+        }
+
+        .details-action.primary:hover {
+            background: #f1f5f9;
+        }
+
+        .details-action.secondary {
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.09
+                );
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.14
+                );
+
+            color: #ffffff;
+        }
+
+
+        /* ================================================
+           CONTENT
+        ================================================ */
+
+        .details-content {
+            padding: 0 0 90px;
+        }
+
+        .details-layout {
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                300px;
+
+            gap: 24px;
+
+            align-items: start;
+        }
+
+
+        /* ================================================
+           LESSONS
+        ================================================ */
+
+        .lessons-panel {
+            background: #ffffff;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 22px;
+
+            overflow: hidden;
+        }
+
+        .panel-header {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 22px;
+
+            border-bottom:
+                1px solid #f1f5f9;
+        }
+
+        .panel-title h2 {
+            color: #172033;
+
+            font-size: 22px;
+
+            letter-spacing: -0.5px;
+        }
+
+        .panel-title p {
+            margin-top: 5px;
+
+            color: #94a3b8;
+
+            font-size: 13px;
+        }
+
+        .lesson-count {
+            flex-shrink: 0;
+
+            min-height: 32px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            padding: 0 11px;
+
+            background: #f1f5f9;
+
+            color: #475569;
+
+            border-radius: 999px;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        /* ================================================
+           LESSON LIST
+        ================================================ */
+
+        .lessons-list {
+            padding: 8px 16px 16px;
+        }
+
+        .lesson-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 17px 8px;
+
+            border-bottom:
+                1px solid #f1f5f9;
+        }
+
+        .lesson-item:last-child {
+            border-bottom: none;
+        }
+
+        .lesson-number {
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            display: grid;
+
+            place-items: center;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            border-radius: 12px;
+
+            font-size: 13px;
+
+            font-weight: 850;
+        }
+
+        .lesson-info {
+            min-width: 0;
+
+            flex: 1;
+        }
+
+        .lesson-info h3 {
+            color: #172033;
+
+            font-size: 15px;
+
+            line-height: 1.35;
+        }
+
+        .lesson-info p {
+            margin-top: 5px;
+
+            color: #94a3b8;
+
+            font-size: 12px;
+        }
+
+        .lesson-pdf {
+            flex-shrink: 0;
+
+            min-height: 40px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 6px;
+
+            padding: 0 13px;
+
+            background: #0f172a;
+
+            color: #ffffff;
+
+            border-radius: 10px;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+        .lesson-pdf:hover {
+            background: #1e293b;
+        }
+
+
+        /* ================================================
+           SIDEBAR
+        ================================================ */
+
+        .details-sidebar {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 16px;
+        }
+
+        .info-card {
+            padding: 21px;
+
+            background: #ffffff;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 20px;
+        }
+
+        .info-card h3 {
+            color: #172033;
+
+            font-size: 16px;
+        }
+
+        .info-card-row {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 12px;
+
+            padding: 13px 0;
+
+            border-bottom:
+                1px solid #f1f5f9;
+
+            font-size: 13px;
+        }
+
+        .info-card-row:last-child {
+            border-bottom: none;
+
+            padding-bottom: 0;
+        }
+
+        .info-card-row:first-of-type {
+            margin-top: 7px;
+        }
+
+        .info-label {
+            color: #94a3b8;
+        }
+
+        .info-value {
+            color: #334155;
+
+            font-weight: 750;
+
+            text-align: right;
+        }
+
+
+        /* ================================================
+           EMPTY / LOADING / ERROR
+        ================================================ */
+
+        .details-message {
+            padding: 55px 25px;
+
+            text-align: center;
+
+            color: #64748b;
+        }
+
+        .details-message-icon {
+            font-size: 40px;
+        }
+
+        .details-message h3 {
+            margin-top: 13px;
+
+            color: #172033;
+
+            font-size: 20px;
+        }
+
+        .details-message p {
+            max-width: 500px;
+
+            margin: 8px auto 0;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+        .details-loading {
+            width: 38px;
+            height: 38px;
+
+            margin: 0 auto 15px;
+
+            border:
+                4px solid #e2e8f0;
+
+            border-top-color: #2563eb;
+
+            border-radius: 50%;
+
+            animation:
+                detailsSpin 0.8s linear infinite;
+        }
+
+        @keyframes detailsSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        /* ================================================
+           HIDDEN
+        ================================================ */
+
+        .hidden {
+            display: none !important;
+        }
+
+
+        /* ================================================
+           RESPONSIVE
+        ================================================ */
+
+        @media (max-width: 850px) {
+
+            .details-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .details-sidebar {
+                display: grid;
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        minmax(0, 1fr)
+                    );
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .details-hero-card {
+                padding: 25px 21px;
+
+                border-radius: 22px;
+            }
+
+            .details-hero h1 {
+                font-size: 38px;
+            }
+
+            .details-actions {
+                flex-direction: column;
+            }
+
+            .details-action {
+                width: 100%;
+            }
+
+            .lesson-item {
+                align-items: flex-start;
+            }
+
+            .lesson-pdf {
+                padding: 0 10px;
+            }
+
+            .lesson-pdf span {
+                display: none;
+            }
+
+            .details-sidebar {
+                grid-template-columns: 1fr;
+            }
+
+            .panel-header {
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <header class="site-header">
+
+        <div class="header-container">
+
+            <a
+                href="../index.html"
+                class="brand"
+            >
+
+                <img
+                    src="../assets/logo.png"
+                    alt="KEYRADDIIN ONLINE CLASS"
+                    class="brand-logo"
+                >
+
+                <div class="brand-text">
+
+                    <strong>
+                        KEYRADDIIN ONLINE CLASS
+                    </strong>
+
+                    <span>
+                        Live Learning Platform
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <a
+                href="classes.html"
+                class="login-btn"
+            >
+                ← Classes
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =================================================
+         MAIN
+    ================================================== -->
+
+    <main class="details-page">
+
+
+        <!-- BACK -->
+
+        <div class="section-container details-nav">
+
+            <a
+                href="classes.html"
+                class="back-link"
+            >
+                ← Back to Classes
+            </a>
+
+        </div>
+
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="details-hero">
+
+            <div class="section-container">
+
+                <div
+                    class="details-hero-card"
+                    id="detailsHero"
+                >
+
+                    <div class="details-hero-content">
+
+                        <div
+                            class="details-status"
+                            id="classStatus"
+                        >
+
+                            <span
+                                class="details-status-dot"
+                            ></span>
+
+                            <span id="statusText">
+                                Loading...
+                            </span>
+
+                        </div>
+
+
+                        <h1 id="classTitle">
+                            Loading class...
+                        </h1>
+
+
+                        <p
+                            class="details-subtitle"
+                            id="classDescription"
+                        >
+                            Please wait while class
+                            information is loading.
+                        </p>
+
+
+                        <div
+                            class="details-meta"
+                            id="classMeta"
+                        >
+                        </div>
+
+
+                        <div
+                            class="details-actions"
+                            id="classActions"
+                        >
+
+                            <a
+                                href="#"
+                                id="joinLiveBtn"
+                                class="details-action primary hidden"
+                            >
+                                🎥 Join Live Class
+                            </a>
+
+
+                            <a
+                                href="classes.html"
+                                class="details-action secondary"
+                            >
+                                ← All Classes
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CONTENT
+        ================================================== -->
+
+        <section class="details-content">
+
+            <div class="section-container">
+
+                <div class="details-layout">
+
+
+                    <!-- =====================================
+                         LESSONS
+                    ====================================== -->
+
+                    <div class="lessons-panel">
+
+                        <div class="panel-header">
+
+                            <div class="panel-title">
+
+                                <h2>
+                                    Lessons & Materials
+                                </h2>
+
+                                <p>
+                                    Study lessons and open
+                                    available PDF materials.
+                                </p>
+
+                            </div>
+
+
+                            <span
+                                class="lesson-count"
+                                id="lessonCount"
+                            >
+                                0 Lessons
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="lessons-list"
+                            id="lessonsList"
+                        >
+
+                            <div class="details-message">
+
+                                <div
+                                    class="details-loading"
+                                ></div>
+
+                                <p>
+                                    Loading lessons...
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =====================================
+                         SIDEBAR
+                    ====================================== -->
+
+                    <aside class="details-sidebar">
+
+
+                        <!-- CLASS INFORMATION -->
+
+                        <div class="info-card">
+
+                            <h3>
+                                Class Information
+                            </h3>
+
+
+                            <div class="info-card-row">
+
+                                <span class="info-label">
+                                    Subject
+                                </span>
+
+                                <span
+                                    class="info-value"
+                                    id="infoSubject"
+                                >
+                                    —
+                                </span>
+
+                            </div>
+
+
+                            <div class="info-card-row">
+
+                                <span class="info-label">
+                                    Grade
+                                </span>
+
+                                <span
+                                    class="info-value"
+                                    id="infoGrade"
+                                >
+                                    —
+                                </span>
+
+                            </div>
+
+
+                            <div class="info-card-row">
+
+                                <span class="info-label">
+                                    Students
+                                </span>
+
+                                <span
+                                    class="info-value"
+                                    id="infoStudents"
+                                >
+                                    —
+                                </span>
+
+                            </div>
+
+
+                            <div class="info-card-row">
+
+                                <span class="info-label">
+                                    Teacher
+                                </span>
+
+                                <span
+                                    class="info-value"
+                                    id="infoTeacher"
+                                >
+                                    —
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- LEARNING -->
+
+                        <div class="info-card">
+
+                            <h3>
+                                Learning
+                            </h3>
+
+                            <div class="info-card-row">
+
+                                <span class="info-label">
+                                    Lessons
+                                </span>
+
+                                <span
+                                    class="info-value"
+                                    id="infoLessons"
+                                >
+                                    0
+                                </span>
+
+                            </div>
+
+
+                            <div class="info-card-row">
+
+                                <span class="info-label">
+                                    PDF Materials
+                                </span>
+
+                                <span
+                                    class="info-value"
+                                    id="infoPDFs"
+                                >
+                                    0
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <img
+                    src="../assets/logo.png"
+                    alt="KEYRADDIIN ONLINE CLASS"
+                >
+
+                <div>
+
+                    <strong>
+                        KEYRADDIIN ONLINE CLASS
+                    </strong>
+
+                    <p>
+                        Live Learning Platform
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a href="classes.html">
+                    Classes
+                </a>
+
+                <a href="login.html">
+                    Student Login
+                </a>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    ©
+                    <span id="year"></span>
+                    KEYRADDIIN ONLINE CLASS.
+                    All rights reserved.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =================================================
+         JAVASCRIPT
+    ================================================== -->
+
+    <script
+        type="module"
+        src="../js/class-details.js"
+    ></script>
+
+</body>
+
+</html>

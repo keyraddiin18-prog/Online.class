@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KEYRADDIIN ONLINE CLASS</title>
+
+    <meta
+        name="description"
+        content="KEYRADDIIN ONLINE CLASS - Live online learning platform for students."
+    >
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        header {
+            background: #0b3d91;
+            color: white;
+            padding: 18px 20px;
+        }
+
+        .navbar {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            display: block;
+            font-size: 12px;
+            font-weight: 400;
+            margin-top: 3px;
+            opacity: 0.9;
+        }
+
+        .login-btn {
+            background: white;
+            color: #0b3d91;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .hero {
+            max-width: 1100px;
+            margin: auto;
+            padding: 70px 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            margin: auto auto 18px;
+            background: #e8f0ff;
+            color: #0b3d91;
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            line-height: 1.15;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            color: #0b3d91;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 0 auto 28px;
+            color: #5d6678;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 13px 20px;
+            border-radius: 9px;
+            font-weight: 700;
+        }
+
+        .primary-btn {
+            background: #0b3d91;
+            color: white;
+        }
+
+        .secondary-btn {
+            background: white;
+            color: #0b3d91;
+            border: 1px solid #d9dfeb;
+        }
+
+        .features {
+            max-width: 1100px;
+            margin: auto;
+            padding: 10px 20px 60px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .section-title h2 {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #697386;
+            font-size: 14px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 22px 18px;
+            border-radius: 12px;
+            border: 1px solid #e5e9f0;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            color: #697386;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        footer {
+            background: #101828;
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: #c8ced8;
+            margin-top: 7px;
+        }
+
+        @media (max-width: 800px) {
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .hero {
+                padding: 55px 20px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="navbar">
+
+            <div class="logo">
+                KEYRADDIIN ONLINE CLASS
+                <span>Live Learning Platform</span>
+            </div>
+
+            <a href="#" class="login-btn">
+                Student Login
+            </a>
+
+        </div>
+    </header>
+
+
+    <!-- HERO -->
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-badge">
+                🔴 LIVE ONLINE LEARNING
+            </div>
+
+            <h1>
+                Learn Live.<br>
+                <span>Learn Better.</span>
+            </h1>
+
+            <p>
+                Welcome to KEYRADDIIN ONLINE CLASS.
+                A learning platform designed to help students
+                attend live classes, access learning materials,
+                practice with quizzes, and follow their progress.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#" class="primary-btn">
+                    🎓 Join Live Class
+                </a>
+
+                <a href="#" class="secondary-btn">
+                    📚 Explore Classes
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURES -->
+        <section class="features">
+
+            <div class="section-title">
+                <h2>What You Can Do</h2>
+                <p>
+                    Everything students need for online learning.
+                </p>
+            </div>
+
+            <div class="feature-grid">
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔴</div>
+                    <h3>Live Classes</h3>
+                    <p>
+                        Attend live lessons with your teacher
+                        from anywhere.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Study Materials</h3>
+                    <p>
+                        Access notes, documents and other
+                        learning resources.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Quizzes</h3>
+                    <p>
+                        Practice what you learn with online
+                        quizzes and tests.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Progress</h3>
+                    <p>
+                        Follow your learning progress and
+                        class activities.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <strong>KEYRADDIIN ONLINE CLASS</strong>
+
+        <p>
+            © 2026 KEYRADDIIN MEDIA. All rights reserved.
+        </p>
+
+    </footer>
+
+</body>
+</html>

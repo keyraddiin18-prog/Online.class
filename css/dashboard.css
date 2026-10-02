@@ -1,0 +1,307 @@
+/* =========================================
+   DASHBOARD STYLE
+   KEYRADDIIN ONLINE CLASS
+========================================= */
+
+.dashboard-container {
+    width: 100%;
+    max-width: 1150px;
+
+    margin: auto;
+
+    padding: 30px 18px;
+}
+
+/* =========================================
+   WELCOME
+========================================= */
+
+.dashboard-welcome {
+    margin-bottom: 25px;
+}
+
+.dashboard-welcome h1 {
+    font-size: 28px;
+    line-height: 1.25;
+
+    margin-bottom: 5px;
+}
+
+.dashboard-welcome p {
+    color: var(--text-light);
+
+    font-size: 14px;
+}
+
+/* =========================================
+   STUDENT INFO
+========================================= */
+
+.student-info {
+    background: var(--primary);
+    color: var(--white);
+
+    padding: 22px;
+
+    border-radius: var(--radius-lg);
+
+    margin-bottom: 25px;
+}
+
+.student-info small {
+    color: #dbe8ff;
+
+    font-size: 12px;
+}
+
+.student-info h2 {
+    font-size: 21px;
+
+    margin: 4px 0;
+}
+
+/* =========================================
+   DASHBOARD GRID
+========================================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 30px;
+}
+
+/* =========================================
+   DASHBOARD CARD
+========================================= */
+
+.dashboard-card {
+    display: block;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 20px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(20, 50, 90, 0.09);
+}
+
+.dashboard-card-icon {
+    font-size: 26px;
+
+    margin-bottom: 12px;
+}
+
+.dashboard-card h3 {
+    font-size: 16px;
+
+    margin-bottom: 6px;
+}
+
+.dashboard-card p {
+    color: var(--text-light);
+
+    font-size: 12px;
+}
+
+/* =========================================
+   LIVE SECTION
+========================================= */
+
+.live-section {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    padding: 20px;
+}
+
+.live-section-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 18px;
+}
+
+.live-section-header h2 {
+    font-size: 20px;
+}
+
+/* =========================================
+   LIVE CLASS ROW
+========================================= */
+
+.live-class-row {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    background: #f6f8fc;
+
+    padding: 15px;
+
+    border-radius: 10px;
+}
+
+.live-class-name {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.live-class-meta {
+    color: var(--text-light);
+
+    font-size: 12px;
+
+    margin-top: 4px;
+}
+
+.join-class-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--primary);
+    color: var(--white);
+
+    padding: 10px 15px;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.join-class-btn:hover {
+    background: var(--primary-dark);
+}
+
+/* =========================================
+   TEACHER STATS
+========================================= */
+
+.teacher-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.teacher-stat {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 20px;
+}
+
+.teacher-stat-number {
+    color: var(--primary);
+
+    font-size: 28px;
+
+    font-weight: 800;
+}
+
+.teacher-stat-label {
+    color: var(--text-light);
+
+    font-size: 13px;
+}
+
+/* =========================================
+   TEACHER PANEL
+========================================= */
+
+.teacher-panel {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    padding: 20px;
+}
+
+.teacher-panel h2 {
+    font-size: 20px;
+
+    margin-bottom: 18px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 850px) {
+
+    .dashboard-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .teacher-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .live-class-row {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .join-class-btn {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-welcome h1 {
+        font-size: 24px;
+    }
+
+}
